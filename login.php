@@ -11,14 +11,17 @@ $users = array(
     
 );
 
-$userName = isset($_POST["userId"]);
-$userPsw = isset($_POST["userPsw"]);
+$userName = (!empty($_POST["userId"])) ? $_POST["userId"] : '';
+$userPsw = (!empty($_POST["userPsw"])) ? $_POST["userPsw"] : '';
 
 function checkData($id , $pass , $data){
     foreach ($data as $element){
         if ($element["username"] == $id && $element["password"] == $pass){
             return true;
-        } 
+            
+        } else{
+            return false;
+        }
     }
 }
 if(checkData($userName , $userPsw , $users)){
