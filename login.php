@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 $users = array(
@@ -8,32 +8,32 @@ $users = array(
     array('username' => 'sara', 'password' => '1234'),
     array('username' => 'tiziana', 'password' => '00000'),
     array('username' => 'rebecca', 'password' => '18041995'),
-    
+
 );
 
-$userName = (isset($_POST["userId"])) ? $_POST["userId"] :  "" ;
-$userPsw = (isset($_POST["userPsw"])) ? $_POST["userPsw"] :  "" ;
+$userName = (isset($_POST["userId"])) ? $_POST["userId"] :  "";
+$userPsw = (isset($_POST["userPsw"])) ? $_POST["userPsw"] :  "";
 
-if($_SESSION['username'] = ""){
+if ($_SESSION['username'] = "") {
     echo "Insert your username and password";
 }
 
-function checkData($id , $pass , $data){
-    foreach ($data as $element){
-        if ($element["username"] == $id && $element["password"] == $pass){
+function checkData($id, $pass, $data)
+{
+    foreach ($data as $element) {
+        if ($element["username"] == $id && $element["password"] == $pass) {
             return true;
-            
         }
     }
 }
-if(checkData($userName , $userPsw , $users)){
-        $_SESSION['username'] = $userName;
-        header('Location: index.php');
-    } elseif (empty($userName) || empty($userPsw)) {
-        echo "Insert your username and password";
-    } else {
-        echo "Invalid password or username";
-    }
+if (empty($userName) || empty($userPsw)) {
+    echo "Insert your username and password";
+} elseif (checkData($userName, $userPsw, $users)) {
+    $_SESSION['username'] = $userName;
+    header('Location: index.php');
+} else {
+    echo "Invalid password or username";
+}
 
 
 
