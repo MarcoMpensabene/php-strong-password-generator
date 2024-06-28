@@ -19,8 +19,6 @@ function checkData($id , $pass , $data){
         if ($element["username"] == $id && $element["password"] == $pass){
             return true;
             
-        } else{
-            return false;
         }
     }
 }
