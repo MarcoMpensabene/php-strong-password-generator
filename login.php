@@ -11,8 +11,12 @@ $users = array(
     
 );
 
-$userName = (!empty($_POST["userId"])) ? $_POST["userId"] : '';
-$userPsw = (!empty($_POST["userPsw"])) ? $_POST["userPsw"] : '';
+$userName = (isset($_POST["userId"])) ? $_POST["userId"] :  "" ;
+$userPsw = (isset($_POST["userPsw"])) ? $_POST["userPsw"] :  "" ;
+
+if($_SESSION['username'] = ""){
+    echo "Insert your username and password";
+}
 
 function checkData($id , $pass , $data){
     foreach ($data as $element){
@@ -25,9 +29,13 @@ function checkData($id , $pass , $data){
 if(checkData($userName , $userPsw , $users)){
         $_SESSION['username'] = $userName;
         header('Location: index.php');
+    } elseif (empty($userName) || empty($userPsw)) {
+        echo "Insert your username and password";
     } else {
-        echo "Invalid username or password";
+        echo "Invalid password or username";
     }
+
+
 
 ?>
 
